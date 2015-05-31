@@ -1,5 +1,5 @@
 ;(function () {
-  window.Snake = window.Snake || {};
+  var Snake = window.Snake = window.Snake || {};
 
   Snake.gameView = function ($el) {
     this.board = new Snake.Board();
@@ -7,7 +7,7 @@
     this.bindListeners();
     this.nextDir = 'N';
 
-    setInterval(this.step.bind(this), 100);
+    setInterval(this.step.bind(this), 500);
   };
 
   Snake.gameView.prototype.bindListeners = function () {
@@ -29,6 +29,7 @@
     this.step();
   };
 
+
   Snake.gameView.prototype.step = function () {
     try {
       if(this.nextDir) {
@@ -42,4 +43,5 @@
       this.board = new Snake.Board();
     }
   };
+
 })();
