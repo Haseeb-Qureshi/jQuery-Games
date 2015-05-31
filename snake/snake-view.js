@@ -6,8 +6,11 @@
     this.$display = $el;
     this.bindListeners();
     this.nextDir = 'N';
+    this.setInterval();
+  };
 
-    setInterval(this.step.bind(this), 500);
+  Snake.gameView.prototype.setInterval = function () {
+    this.intervalId = setInterval(this.step.bind(this), 100);
   };
 
   Snake.gameView.prototype.bindListeners = function () {
@@ -26,6 +29,8 @@
       case 40: this.nextDir = 'S';
                break;
     }
+    clearInterval(this.intervalId);
+    this.setInterval();
     this.step();
   };
 
@@ -37,10 +42,22 @@
         this.nextDir = null;
       }
       this.board.move();
-      this.$display.text(this.board.render());
+      this.$display.html(this.board.render());
     }
     catch(err) {
-      this.board = new Snake.Board();
+      this.clearListeners();
+      setTimeout(function () {
+        this.board = new Snake.Board();
+        this.setInterval();
+        this.bindListeners();
+      }.bind(this), 1000);
+    }
+  };
+
+  Snake.gameView.prototype.clearListeners = function () {
+    $('body').off('keydown');
+    for (var i = 0; i <= 9999; i++) {
+      window.clearInterval(i);
     }
   };
 

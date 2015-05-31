@@ -82,11 +82,10 @@
     }
 
     if (!newHeadCoord.inBounds()) {
-      this.dir = this.leftDir(this.dir);
+      this.dir = this.leftDir(this.leftDir(this.dir));
       nextCoord = this.dirs()[this.dir];
       newHeadCoord = nextCoord.plus(headCoord);
     }
-    // debugger
     this.segments.push(newHeadCoord);
     this.segments.shift();
     this.tail = this.segments[0];
@@ -95,7 +94,6 @@
     if (this.segments.some(function (coord) {
       return coord !== newHeadCoord && coord.equals(newHeadCoord);
     })) {
-      // debugger
       throw "Snake Died";
     }
   };

@@ -54,14 +54,15 @@
           display += ".";
         } else if (this.head.x === i && this.head.y === j) {
           this.grid[i][j] = "S";
-          display += "H";
+          display += "<b>H</b>";
         } else if (this.grid[i][j] === undefined) {
           display += ".";
         } else if (this.grid[i][j] === "S") {
-          display += "S";
+          display += "<b>S</b>";
         } else if (this.grid[i][j] === "A") {
-          display += "A";
+          display += '<span style="color: red">A</span>';
         }
+        display += " ";
       }
       display += "\n";
     }
