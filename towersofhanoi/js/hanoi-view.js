@@ -31,7 +31,6 @@
 
   View.prototype.clickTower = function ($tower) {
     if (this.$selectedTower) {
-      // debugger;
 
       var $movingDisk = this.$selectedTower.children('.disk:last-child');
 
@@ -40,7 +39,8 @@
         $movingDisk.detach().appendTo($tower);
         $movingDisk.removeClass('selected');
         if (this.game.isWon()) {
-          $('<h1>').text("You Win!").appendTo('.container');
+          $('<h1>').css("text-decoration", "underline").text("A Winner Is You!")
+            .appendTo('.container');
           $('.pile-container').off('click');
         }
       } else {

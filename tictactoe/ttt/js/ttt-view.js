@@ -36,7 +36,9 @@
     if (this.game.winner()) {
       $('.cell').addClass('clicked');
       $('.' + this.game.winner().toUpperCase()).css({ background: 'teal' });
-      $('body').append($('<h2>').text('Congratulations, ' + this.game.winner().toUpperCase()));
+      $('body').append($('<h2>').text(
+        'Congratulations, ' + this.game.winner().toUpperCase() + "!"
+      ));
       $('.row').off('click', '.cell');
     }
   };
